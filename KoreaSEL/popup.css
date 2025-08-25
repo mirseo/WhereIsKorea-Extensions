@@ -36,7 +36,7 @@ body {
 .shield-icon {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, #0066FF 0%, #004DB3 100%);
+    background: transparent;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@ body {
     content: '';
     width: 28px;
     height: 28px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10.5V11.5C15.4,11.5 16,12.4 16,13V16C16,17.4 15.4,18 14.8,18H9.2C8.6,18 8,17.4 8,16V13C8,12.4 8.6,11.5 9.2,11.5V10.5C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10.5V11.5H13.5V10.5C13.5,8.7 12.8,8.2 12,8.2Z'/%3E%3C/svg%3E") no-repeat center center;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M8,1 L14,1 L8,1 Z M19.188,19.472 L16,22 L12.5,17.5 L9.5,21 L7,7 L20,13.5 L15.5,15 L19.188,19.472 Z M19,4 L19,1 L16,1 M6,1 L3,1 L3,4 M3,14 L3,17 L6,17 M19,6 L19,10 L19,6 Z M3,12 L3,6 L3,12 Z'/%3E%3C/svg%3E") no-repeat center center;
     background-size: contain;
 }
 
@@ -120,10 +120,18 @@ input:checked + .slider:before {
 .status {
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff !important;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-family: 'Gothic A1', 'Malgun Gothic', '맑은 고딕', sans-serif;
+    transition: color 0.3s ease;
+}
+
+.status.enabled {
+    color: #0066FF;
+}
+
+.status.disabled {
+    color: #666666;
 }
 
 .copyright {
