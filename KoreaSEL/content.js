@@ -1,56 +1,46 @@
 // Korea keywords and patterns
 const KOREA_KEYWORDS = [
-  // 한글 표기
-  '대한민국',
-  '한국',
-  '남한',
-  '코리아',
-  
-  // 영문 표기
-  'South Korea',
-  'Korea',
-  'Republic of Korea',
-  'ROK',
-  'KR',
-  'KOR',
-  'KOREA',
-  'Korea, Republic of',
-  'Korea (South)',
-  'Korea, South',
-  'S. Korea',
-  'So. Korea',
-  'South Korean',
-  
-  // ISO 코드
-  '410',
-  '+82',
-  
-  // 기타 언어
-  '韓国', // 일본어
-  '韩国', // 중국어 간체
-  'Corée du Sud', // 프랑스어
-  'Südkorea', // 독일어
-  'Corea del Sur', // 스페인어
-  'Coreia do Sul', // 포르투갈어
-  'Zuid-Korea', // 네덜란드어
-  'Южная Корея', // 러시아어
-  'كوريا الجنوبية', // 아랍어
-  
-  // 도시명
-  'Seoul',
-  '서울',
-  'Busan',
-  '부산',
-  'Incheon',
-  '인천',
-  'Daegu',
-  '대구',
-  'Daejeon',
-  '대전',
-  'Gwangju',
-  '광주',
-  'Ulsan',
-  '울산'
+    // 한글 표기
+    '대한민국',
+    '한국',
+    '남한',
+    '코리아',
+    
+    // 영문 표기
+    'South Korea',
+    'Korea',
+    'Republic of Korea',
+    'ROK',
+    'KR',
+    'KOR',
+    'KOREA',
+    'Korea, Republic of',
+    'Korea (South)',
+    'Korea, South',
+    'S. Korea',
+    'So. Korea',
+    'South Korean',
+    
+    // ISO 코드
+    '410',
+    '+82',
+    
+    // 기타 언어
+    '韓国', // 일본어
+    '韩国', // 중국어 간체
+    'Corée du Sud', // 프랑스어
+    'Südkorea', // 독일어
+    'Corea del Sur', // 스페인어
+    'Coreia do Sul', // 포르투갈어
+    'Zuid-Korea', // 네덜란드어
+    'Южная Корея', // 러시아어
+    'كوريا الجنوبية', // 아랍어
+    
+    //   비표준 ID
+    'seoul',
+    'daehanminguk',
+    'corea',
+    'Coreia'
 ];
 
 const KOREA_PATTERNS = [
