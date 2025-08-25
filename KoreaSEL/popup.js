@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.getElementById('toggleSwitch');
     const statusText = document.getElementById('statusText');
+    const copyrightLink = document.getElementById('copyrightLink');
 
     // 저장된 상태 불러오기
     chrome.storage.local.get(['koreaSelectorEnabled'], function(result) {
@@ -30,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+
+    // Copyright 링크 클릭 이벤트
+    copyrightLink.addEventListener('click', function() {
+        chrome.tabs.create({ url: 'https://github.com/mirseo/WhereIsKorea-Extensions' });
     });
 
     function updateStatusText(isEnabled) {
