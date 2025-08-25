@@ -120,17 +120,10 @@ input:checked + .slider:before {
 .status {
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #ffffff !important;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-.status.enabled {
-    color: #00FF88;
-}
-
-.status.disabled {
-    color: #FF6B6B;
+    font-family: 'Gothic A1', 'Malgun Gothic', '맑은 고딕', sans-serif;
 }
 
 .copyright {
