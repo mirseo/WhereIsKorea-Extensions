@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 테스트 페이지 - 대한민국 자동 선택</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        h1, h2 { color: #333; }
+        .form-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <h1>회원가입 자동 선택 기능 테스트</h1>
+    <p>이 페이지는 '대한민국'을 다양한 방식으로 표기한 드롭다운 메뉴를 포함하고 있습니다. 익스텐션이 각기 다른 형식을 인식하고 자동으로 '대한민국'을 선택하는지 확인해보세요.</p>
+
+    <div class="form-section">
+        <h2>1. 영문 표준 표기</h2>
+        <label for="country1">국가 선택</label>
+        <select id="country1" name="country1">
+            <option value="">-- 국가를 선택하세요 --</option>
+            <option value="US">United States</option>
+            <option value="JP">Japan</option>
+            <option value="KR">South Korea</option>
+            <option value="CN">China</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>2. 영문 비표준/약칭</h2>
+        <label for="country2">Country</label>
+        <select id="country2" name="country2">
+            <option value="">-- Select a country --</option>
+            <option value="CA">Canada</option>
+            <option value="UK">United Kingdom</option>
+            <option value="KOR">KOR</option>
+            <option value="DE">Germany</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>3. 한글 및 약칭</h2>
+        <label for="country3">국가</label>
+        <select id="country3" name="country3">
+            <option value="">-- 국가 선택 --</option>
+            <option value="미국">미국</option>
+            <option value="한국">한국</option>
+            <option value="일본">일본</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>4. 다국어 혼합</h2>
+        <label for="country4">Select Your Country</label>
+        <select id="country4" name="country4">
+            <option value="">-- Choose your country --</option>
+            <option value="BR">Brasil</option>
+            <option value="DE">Südkorea</option>
+            <option value="FR">Corée du Sud</option>
+            <option value="ES">Corea del Sur</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>5. ISO 코드 (Numeric)</h2>
+        <label for="country5">Country ID</label>
+        <select id="country5" name="country5">
+            <option value="">-- Select --</option>
+            <option value="840">USA</option>
+            <option value="392">Japan</option>
+            <option value="410">Republic of Korea</option>
+            <option value="156">China</option>
+        </select>
+    </div>
+    
+</body>
+</html>

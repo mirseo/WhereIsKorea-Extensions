@@ -78,6 +78,7 @@ const KOREA_PATTERNS = [
 
 let autoSelectEnabled = false;
 let processedSelects = new Set();
+let mutationObserver = null;
 
 // 초기화 및 설정 상태 확인
 chrome.storage.local.get(['koreaSelectorEnabled'], function(result) {
@@ -99,6 +100,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 message: '자동 선택이 활성화되었습니다'
             });
         } else {
+            // 비활성화 시 observer 정리 및 처리된 select 목록 초기화
+            if (mutationObserver) {
+                mutationObserver.disconnect();
+                mutationObserver = null;
+            }
+            processedSelects.clear();
             sendResponse({
                 success: true,
                 message: '자동 선택이 비활성화되었습니다'
@@ -111,11 +118,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 function initAutoSelector() {
     if (!autoSelectEnabled) return;
     
+    // 기존 observer가 있다면 정리
+    if (mutationObserver) {
+        mutationObserver.disconnect();
+    }
+    
     // 기존 select 요소들 처리
     processExistingSelects();
     
     // 새로 생성되는 select 요소들을 위한 MutationObserver
-    const observer = new MutationObserver(function(mutations) {
+    mutationObserver = new MutationObserver(function(mutations) {
         if (!autoSelectEnabled) return;
         
         mutations.forEach(function(mutation) {
@@ -134,18 +146,21 @@ function initAutoSelector() {
         });
     });
     
-    observer.observe(document.body, {
+    mutationObserver.observe(document.body, {
         childList: true,
         subtree: true
     });
 }
 
 function processExistingSelects() {
+    if (!autoSelectEnabled) return;
+    
     const selects = document.querySelectorAll('select');
     selects.forEach(processSelect);
 }
 
 function processSelect(selectElement) {
+    if (!autoSelectEnabled) return;
     if (processedSelects.has(selectElement)) return;
     processedSelects.add(selectElement);
     
