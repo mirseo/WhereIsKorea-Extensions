@@ -19,7 +19,13 @@ const KOREA_KEYWORDS = [
     'Korea, South',
     'S. Korea',
     'So. Korea',
-    'South Korean',
+    'South Korean',,
+    'K-Country',
+    'K.R',
+    'Rep. of Korea',
+    'South of Korea',
+    'Korea (S)',
+    'The Land of the Morning Calm',
     
     // ISO 코드
     '410',
@@ -35,12 +41,31 @@ const KOREA_KEYWORDS = [
     'Zuid-Korea', // 네덜란드어
     'Южная Корея', // 러시아어
     'كوريا الجنوبية', // 아랍어
+     'Republik Korea', // 독일어
+    'Südkorea', // 독일어
+    'République de Corée', // 프랑스어
+    'Corée du Sud', // 프랑스어
+    'República de Corea', // 스페인어
+    'Corea del Sur', // 스페인어
+    'Repubblica di Corea', // 이탈리아어
+    'Coreia do Sul', // 포르투갈어
+    'Zuid-Korea', // 네덜란드어
+    'Южная Корея', // 러시아어
     
     //   비표준 ID
     'seoul',
     'daehanminguk',
     'corea',
-    'Coreia'
+    'Coreia',
+
+    'KR-', // 비표준 ID
+    '大韓民國', // 번체
+    '大韩民国', // 간체
+    '大韓民国', // 일본어
+    'Đại Hàn Dân Quốc',
+    'Южная Корея', // 러시아어
+    'KR-KR' // 비표준
+
 ];
 
 const KOREA_PATTERNS = [
@@ -173,10 +198,11 @@ function findKoreaOption(selectElement) {
 function isKoreaMatch(text) {
     const normalizedText = text.toLowerCase().trim();
     
-    // 정확한 키워드 매칭
+    // 정확한 키워드 매칭 (대소문자 구분 없음)
     for (const keyword of KOREA_KEYWORDS) {
-        if (normalizedText === keyword.toLowerCase() || 
-            normalizedText.includes(keyword.toLowerCase())) {
+        const normalizedKeyword = keyword.toLowerCase();
+        if (normalizedText === normalizedKeyword || 
+            normalizedText.includes(normalizedKeyword)) {
             return true;
         }
     }
