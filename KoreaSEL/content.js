@@ -80,9 +80,13 @@ let autoSelectEnabled = false;
 let processedSelects = new Set();
 let mutationObserver = null;
 
+// 확장 프로그램 로드 확인
+console.log('[KoreaSEL] Content script loaded on:', window.location.href);
+
 // 초기화 및 설정 상태 확인
 chrome.storage.local.get(['koreaSelectorEnabled'], function(result) {
     autoSelectEnabled = result.koreaSelectorEnabled || false;
+    console.log('[KoreaSEL] Extension enabled:', autoSelectEnabled);
     if (autoSelectEnabled) {
         initAutoSelector();
     }
@@ -126,6 +130,22 @@ function initAutoSelector() {
     // 기존 select 요소들 처리
     processExistingSelects();
     
+    // 동적 로딩을 위한 지연 처리
+    setTimeout(() => {
+        if (autoSelectEnabled) {
+            console.log('[KoreaSEL] Delayed select processing');
+            processExistingSelects();
+        }
+    }, 2000);
+    
+    // 추가 지연 처리 (일부 사이트는 더 오래 걸림)
+    setTimeout(() => {
+        if (autoSelectEnabled) {
+            console.log('[KoreaSEL] Extended delayed select processing');
+            processExistingSelects();
+        }
+    }, 5000);
+    
     // 새로 생성되는 select 요소들을 위한 MutationObserver
     mutationObserver = new MutationObserver(function(mutations) {
         if (!autoSelectEnabled) return;
@@ -156,6 +176,7 @@ function processExistingSelects() {
     if (!autoSelectEnabled) return;
     
     const selects = document.querySelectorAll('select');
+    console.log('[KoreaSEL] Found select elements:', selects.length);
     selects.forEach(processSelect);
 }
 
@@ -164,11 +185,23 @@ function processSelect(selectElement) {
     if (processedSelects.has(selectElement)) return;
     processedSelects.add(selectElement);
     
+    console.log('[KoreaSEL] Processing select:', {
+        name: selectElement.name,
+        id: selectElement.id,
+        className: selectElement.className,
+        placeholder: selectElement.getAttribute('placeholder')
+    });
+    
     // 국가 선택과 관련된 select인지 확인
-    if (!isCountrySelect(selectElement)) return;
+    const isCountryRelated = isCountrySelect(selectElement);
+    console.log('[KoreaSEL] Is country select:', isCountryRelated);
+    
+    if (!isCountryRelated) return;
     
     // 한국 옵션 찾기 및 선택
     const koreaOption = findKoreaOption(selectElement);
+    console.log('[KoreaSEL] Found Korea option:', koreaOption ? koreaOption.textContent : 'Not found');
+    
     if (koreaOption) {
         // 이미 선택된 경우 skip
         if (selectElement.value === koreaOption.value || koreaOption.selected) return;
