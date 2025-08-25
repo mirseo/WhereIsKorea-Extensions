@@ -7,6 +7,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     color: #ffffff;
     overflow: hidden;
+    border-radius: 12px;
 }
 
 .container {
@@ -67,6 +68,9 @@ h1 {
     align-items: center;
     gap: 20px;
     margin: 40px 0;
+    padding: 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .toggle {
@@ -140,4 +144,13 @@ input:checked + .slider:before {
     color: #666666;
     font-weight: 400;
     margin-top: auto;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.copyright:hover {
+    background: rgba(255, 255, 255, 0.06);
 }
