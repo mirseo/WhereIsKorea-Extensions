@@ -36,7 +36,7 @@ body {
 .shield-icon {
     width: 48px;
     height: 48px;
-    background: transparent;
+    background: linear-gradient(135deg, #0066FF 0%, #004DB3 100%);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -48,8 +48,9 @@ body {
     content: '';
     width: 28px;
     height: 28px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M8,1 L14,1 L8,1 Z M19.188,19.472 L16,22 L12.5,17.5 L9.5,21 L7,7 L20,13.5 L15.5,15 L19.188,19.472 Z M19,4 L19,1 L16,1 M6,1 L3,1 L3,4 M3,14 L3,17 L6,17 M19,6 L19,10 L19,6 Z M3,12 L3,6 L3,12 Z'/%3E%3C/svg%3E") no-repeat center center;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3.045 18.894 9.94 12 3.045 5.106a.75.75 0 0 1 1.06-1.061l7.425 7.425a.75.75 0 0 1 0 1.06l-7.424 7.425a.75.75 0 0 1-1.061-1.06Zm8.205.606a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 0-1.5h-9.5Z'/%3E%3C/svg%3E") no-repeat center center;
     background-size: contain;
+    margin-top: 3px;
 }
 
 h1 {
