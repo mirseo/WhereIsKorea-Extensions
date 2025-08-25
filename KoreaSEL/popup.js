@@ -34,5 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateStatusText(isEnabled) {
         statusText.textContent = isEnabled ? 'Enabled' : 'Disabled';
+        statusText.className = `status ${isEnabled ? 'enabled' : 'disabled'}`;
     }
 });
