@@ -10,7 +10,19 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "koreaSelector"
+    "default_title": "koreaSelector",
+    "default_icon": {
+      "16": "static/koreaselector.png",
+      "32": "static/koreaselector.png",
+      "48": "static/koreaselector.png",
+      "128": "static/koreaselector.png"
+    }
+  },
+  "icons": {
+    "16": "static/koreaselector.png",
+    "32": "static/koreaselector.png",
+    "48": "static/koreaselector.png",
+    "128": "static/koreaselector.png"
   },
   "content_scripts": [
     {
