@@ -14,17 +14,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
     
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-    
-    - name: Run compression script
-      run: python3 compress_koreasel.py
-    
     - name: Create zip archive
       run: |
-        cd compressed_KoreaSEL
+        cd KoreaSEL
         zip -r ../KoreaSEL-extension.zip .
         cd ..
     
