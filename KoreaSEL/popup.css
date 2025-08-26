@@ -46,11 +46,10 @@ body {
 
 .shield-icon::before {
     content: '';
-    width: 28px;
-    height: 28px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3.045 18.894 9.94 12 3.045 5.106a.75.75 0 0 1 1.06-1.061l7.425 7.425a.75.75 0 0 1 0 1.06l-7.424 7.425a.75.75 0 0 1-1.061-1.06Zm8.205.606a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 0-1.5h-9.5Z'/%3E%3C/svg%3E") no-repeat center center;
+    width: 55px;
+    height: 55px;
+    background: url("static/clean_koreaSelector.svg") no-repeat center center;
     background-size: contain;
-    margin-top: 3px;
 }
 
 .logo-text {
