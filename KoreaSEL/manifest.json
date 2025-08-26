@@ -12,17 +12,17 @@
     "default_popup": "popup.html",
     "default_title": "koreaSelector",
     "default_icon": {
-      "16": "./static/koreaselector.svg",
-      "32": "./static/koreaselector.svg",
-      "48": "./static/koreaselector.svg",
-      "128": "./static/koreaselector.svg"
+      "16": "static/koreaselector.svg",
+      "32": "static/koreaselector.svg",
+      "48": "static/koreaselector.svg",
+      "128": "static/koreaselector.svg"
     }
   },
   "icons": {
-    "16": "./static/koreaselector.svg",
-    "32": "./static/koreaselector.svg",
-    "48": "./static/koreaselector.svg",
-    "128": "./static/koreaselector.svg"
+    "16": "static/koreaselector.svg",
+    "32": "static/koreaselector.svg",
+    "48": "static/koreaselector.svg",
+    "128": "static/koreaselector.svg"
   },
   "content_scripts": [
     {
