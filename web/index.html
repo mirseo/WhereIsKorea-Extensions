@@ -1,12 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KoreaSelector - Home</title>
-</head>
-<script src="./htmx.min.js"></script>
-<body>
+    <title>KoreaSelector - 크롬 확장 프로그램</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../KoreaSEL/static/koreaselector.png">
+    <link rel="apple-touch-icon" href="../KoreaSEL/static/koreaselector.png">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Pretendard Font -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <!-- TailwindCSS Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    },
+                    colors: {
+                        'toss-blue': '#3182f6',
+                        'toss-gray': {
+                            50: '#f8f9fa',
+                            100: '#f1f3f4',
+                            200: '#e8eaed',
+                            300: '#dadce0',
+                            400: '#9aa0a6',
+                            500: '#5f6368',
+                            600: '#3c4043',
+                            700: '#202124',
+                            800: '#191c20',
+                            900: '#0f1014'
+                        }
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- HTMX -->
+    <script src="./htmx.min.js"></script>
+    
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .toss-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .toss-shadow-lg {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        
+        .feature-card {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-text {
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+        }
+        
+        .section-padding {
+            padding: 120px 0;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3182f6 0%, #1c64f2 100%);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(49, 130, 246, 0.25);
+        }
+        
+        .status-badge {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center bg-white">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 toss-shadow">
+                            <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-lg font-bold text-toss-gray-700">KoreaSelector</div>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#features" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">기능</a>
+                        <a href="#about" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">소개</a>
+                        <a href="/license" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">라이센스</a>
+                        <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Hero Content -->
+        <div class="section-padding">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center px-4 py-2 rounded-full status-badge text-sm font-semibold text-amber-800 mb-8">
+                    현재 개발 중이에요!
+                </div>
+                
+                <!-- Main Headline -->
+                <h1 class="hero-text text-5xl md:text-7xl font-black text-toss-gray-800 mb-6 max-w-4xl mx-auto">
+                    더 이상 긴 국가 목록에서<br>
+                    <span class="text-toss-blue">"Korea"</span>를 찾지 마세요
+                </h1>
+                
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl text-toss-gray-500 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    해외 웹사이트 회원가입이나 폼 작성 시<br>
+                    다양한 형태로 표기된 대한민국을 자동으로 탐지하고 선택해주는<br>
+                    <strong class="text-toss-gray-700">똑똑한 확장프로그램</strong>입니다.
+                </p>
+                
+                <!-- CTA Button -->
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button 
+                        id="chrome-store-btn"
+                        class="btn-primary text-white font-bold text-lg px-8 py-4 rounded-2xl toss-shadow-lg inline-flex items-center"
+                        onclick="window.open('https://chrome.google.com/webstore', '_blank')"
+                    >
+                        <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Chrome 웹스토어에서 설치하기
+                    </button>
+                    <button class="text-toss-gray-600 font-semibold text-lg px-8 py-4 rounded-2xl border border-toss-gray-200 hover:bg-toss-gray-50 transition-colors">
+                        사용법 보기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="section-padding bg-toss-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-black text-toss-gray-800 mb-6">
+                    KoreaSelector를 만든 이유에요
+                </h2>
+                <p class="text-xl text-toss-gray-500 max-w-2xl mx-auto">
+                    매번 각기 다른 이름으로 표시된 대한민국!!
+                    <br>
+                    가끔 찾기 어려워서 만들었어요!
+                    
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-white p-10 rounded-3xl toss-shadow border border-toss-gray-100">
+                    <div class="w-16 h-16 bg-toss-blue rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-toss-gray-800 mb-4 text-center">모든 표기 인식</h3>
+                    <p class="text-toss-gray-500 text-center leading-relaxed text-lg">
+                        Korea, South Korea, Republic of Korea 등 모든 형태의 대한민국 표기를 인식합니다
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="card-hover bg-white p-10 rounded-3xl toss-shadow border border-toss-gray-100">
+                    <div class="w-16 h-16 bg-toss-blue rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-toss-gray-800 mb-4 text-center">원클릭 선택</h3>
+                    <p class="text-toss-gray-500 text-center leading-relaxed text-lg">
+                        긴 목록을 스크롤할 필요 없이 자동으로 대한민국을 찾아 선택해줍니다
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="card-hover bg-white p-10 rounded-3xl toss-shadow border border-toss-gray-100">
+                    <div class="w-16 h-16 bg-toss-blue rounded-2xl flex items-center justify-center mb-8 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-toss-gray-800 mb-4 text-center">간편한 설정</h3>
+                    <p class="text-toss-gray-500 text-center leading-relaxed text-lg">
+                        설정에서 언제든지 on/off 가능하며 사용자 친화적인 인터페이스를 제공합니다
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black text-toss-gray-800 mb-8">
+                더 나은 웹 경험을 위해
+            </h2>
+            <p class="text-xl text-toss-gray-500 mb-12 leading-relaxed">
+                더 나은 사용자 경험을 위해 지속적으로 개발하고 있습니다.<br>
+                미지원 사이트의 경우 Issue로 남겨주시면 추가해볼게요!
+
+                <br>
+                <br>
+                이건 비밀인데... 100% 오픈소스에요
+            </p>
+            
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-8 text-left">
+                <div class="flex items-start space-x-4">
+                    <div class="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 13.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-amber-800 mb-2">알림</h3>
+                        <p class="text-amber-700 leading-relaxed">
+                            일부 사이트는 보안상 동적 로더, 확장프로그램 로드 차단(CSP)를 사용 중에 있어 동작하지 않을 수도 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-toss-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="flex items-center space-x-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2">
+                        <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-2xl font-black text-white">KoreaSelector</div>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="#features" class="text-toss-gray-400 hover:text-white font-medium transition-colors">기능</a>
+                    <a href="#about" class="text-toss-gray-400 hover:text-white font-medium transition-colors">소개</a>
+                    <a href="/license" class="text-toss-gray-400 hover:text-white font-medium transition-colors">라이센스</a>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-400 hover:text-white font-medium transition-colors">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-toss-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-toss-gray-400 mb-4 md:mb-0">
+                        해외에서 더 편리한 웹 경험을 위해
+                    </p>
+                    <p class="text-toss-gray-400">© 2025 mirseo. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Simple JavaScript for interactions -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // HTMX integration for dynamic content
+        document.body.addEventListener('htmx:afterSettle', function(event) {
+            console.log('HTMX content loaded');
+        });
+    </script>
 </body>
 </html>
