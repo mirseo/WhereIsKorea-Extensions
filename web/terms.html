@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용약관 - KoreaSelector</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../KoreaSEL/static/koreaselector.png">
+    <link rel="apple-touch-icon" href="../KoreaSEL/static/koreaselector.png">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Pretendard Font -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <!-- TailwindCSS Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    },
+                    colors: {
+                        'toss-blue': '#3182f6',
+                        'toss-gray': {
+                            50: '#f8f9fa',
+                            100: '#f1f3f4',
+                            200: '#e8eaed',
+                            300: '#dadce0',
+                            400: '#9aa0a6',
+                            500: '#5f6368',
+                            600: '#3c4043',
+                            700: '#202124',
+                            800: '#191c20',
+                            900: '#0f1014'
+                        }
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- HTMX -->
+    <script src="./htmx.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .toss-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .toss-shadow-lg {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-text {
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+        }
+        
+        .section-padding {
+            padding: 120px 0;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="./index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 toss-shadow">
+                        <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-lg font-bold text-toss-gray-700">KoreaSelector</div>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html#features" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">기능</a>
+                    <a href="./index.html#about" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">소개</a>
+                    <a href="./license.html" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">라이센스</a>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Terms of Service Content -->
+    <section class="pt-32 pb-20 bg-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="hero-text text-4xl md:text-5xl font-black text-toss-gray-800 mb-6">
+                    이용약관
+                </h1>
+                <p class="text-xl text-toss-gray-500 leading-relaxed max-w-3xl mx-auto">
+                    KoreaSelector 사용에 대한 약관입니다.<br>
+                    간단하고 명확한 조건으로 안심하고 사용하세요.
+                </p>
+            </div>
+
+            <!-- Terms Summary -->
+            <div class="bg-blue-50 border border-blue-200 rounded-3xl p-8 mb-16">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-toss-blue rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800 mb-4">자유로운 사용</h2>
+                    <p class="text-blue-700 text-lg leading-relaxed">
+                        KoreaSelector는 무료이며 제한 없이 사용하실 수 있습니다.<br>
+                        복잡한 조건 없이 간단하게 이용하세요.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Detailed Terms -->
+            <div class="space-y-12">
+                <!-- 1. 서비스 개요 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">1. 서비스 개요</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p><strong>KoreaSelector</strong>는 웹사이트의 국가 선택 필드에서 대한민국을 자동으로 찾아주는 브라우저 확장 프로그램입니다.</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>다양한 형태의 대한민국 표기를 인식 (Korea, South Korea, Republic of Korea 등)</li>
+                            <li>자동 선택 기능으로 사용자 편의성 향상</li>
+                            <li>설정을 통한 on/off 기능 제공</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. 이용 조건 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">2. 이용 조건</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>다음 조건에 동의하시는 경우 서비스를 이용하실 수 있습니다:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>서비스를 합법적이고 적절한 목적으로 사용</li>
+                            <li>다른 사용자나 시스템에 피해를 주지 않는 방식으로 이용</li>
+                            <li>서비스의 보안을 위협하는 행위 금지</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. 서비스 이용 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">3. 서비스 이용</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>서비스 이용에 관한 사항:</p>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <h3 class="font-semibold text-toss-gray-700">✅ 허용되는 사용</h3>
+                                <ul class="list-disc list-inside space-y-1 ml-4 mt-2">
+                                    <li>개인적 사용</li>
+                                    <li>상업적 환경에서의 사용</li>
+                                    <li>교육 목적 사용</li>
+                                    <li>코드 수정 및 재배포 (MIT 라이센스 조건 하에)</li>
+                                </ul>
+                            </div>
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h3 class="font-semibold text-toss-gray-700">❌ 금지되는 행위</h3>
+                                <ul class="list-disc list-inside space-y-1 ml-4 mt-2">
+                                    <li>서비스를 이용한 불법 행위</li>
+                                    <li>다른 사용자나 시스템에 피해를 주는 행위</li>
+                                    <li>서비스의 보안을 우회하거나 침해하는 행위</li>
+                                    <li>서비스를 악용하여 스팸이나 악성 활동 수행</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 책임 및 보증 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">4. 책임 및 보증</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>서비스 제공자의 책임과 보증에 관한 사항:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li><strong>서비스 품질:</strong> 최선을 다해 안정적인 서비스를 제공하지만, 완벽한 동작을 보장하지는 않습니다</li>
+                            <li><strong>호환성:</strong> 모든 웹사이트에서 동작을 보장하지 않으며, 일부 사이트는 보안 정책으로 인해 제한될 수 있습니다</li>
+                            <li><strong>업데이트:</strong> 서비스 개선을 위해 정기적으로 업데이트를 제공합니다</li>
+                            <li><strong>손해 배상:</strong> 서비스 사용으로 인한 직간접적 손해에 대해 책임을 지지 않습니다</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. 지적 재산권 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">5. 지적 재산권</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>지적 재산권에 관한 사항:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>KoreaSelector는 MIT 라이센스 하에 배포되는 오픈소스 소프트웨어입니다</li>
+                            <li>사용자는 라이센스 조건에 따라 자유롭게 사용, 수정, 배포할 수 있습니다</li>
+                            <li>상표권 및 로고 사용에 대해서는 별도 승인이 필요할 수 있습니다</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. 서비스 변경 및 중단 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">6. 서비스 변경 및 중단</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>서비스 변경 및 중단에 관한 사항:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>서비스 개선을 위해 기능이 변경될 수 있습니다</li>
+                            <li>중대한 변경사항은 GitHub 저장소를 통해 사전 공지합니다</li>
+                            <li>서비스 중단 시에도 오픈소스 특성상 다른 개발자가 계속 유지보수할 수 있습니다</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. 분쟁 해결 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">7. 분쟁 해결</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>분쟁 발생 시 해결 방법:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>GitHub Issues를 통한 기술적 문제 신고</li>
+                            <li>개발자와의 직접 소통을 통한 문제 해결</li>
+                            <li>오픈소스 커뮤니티를 통한 협력적 해결</li>
+                        </ul>
+                        <div class="bg-toss-gray-50 p-4 rounded-xl mt-6">
+                            <p class="text-sm text-toss-gray-600">
+                                <strong>연락처:</strong><br>
+                                개발자: mirseo<br>
+                                GitHub: <a href="https://github.com/mirseo/WhereIsKorea-Extensions" class="text-toss-blue hover:underline" target="_blank">WhereIsKorea-Extensions</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. 약관의 효력 및 변경 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">8. 약관의 효력 및 변경</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>약관 변경에 관한 사항:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>이 약관은 서비스 설치 및 사용 시 동의한 것으로 간주됩니다</li>
+                            <li>약관 변경 시 GitHub 저장소를 통해 공지합니다</li>
+                            <li>중요한 변경사항은 최소 7일 전에 사전 고지합니다</li>
+                            <li>변경된 약관에 동의하지 않는 경우 서비스 사용을 중단하실 수 있습니다</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-toss-gray-200">
+                            <p class="text-sm text-toss-gray-500">
+                                <strong>약관 시행일:</strong> 2025년 8월<br>
+                                <strong>약관 버전:</strong> 1.0<br>
+                                <strong>최종 수정일:</strong> 2025년 8월
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mt-16 p-8 bg-toss-gray-50 rounded-3xl">
+                <h2 class="text-2xl font-bold text-toss-gray-800 mb-6 text-center">문의사항이 있으신가요?</h2>
+                <div class="text-center">
+                    <p class="text-toss-gray-600 mb-6">
+                        이용약관에 대해 궁금한 점이 있으시면<br>
+                        언제든지 GitHub 저장소를 통해 문의해 주세요.
+                    </p>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions/issues" target="_blank" class="inline-flex items-center px-6 py-3 bg-toss-blue text-white font-semibold rounded-2xl hover:bg-blue-600 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub에서 문의하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-toss-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="flex items-center space-x-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2">
+                        <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-2xl font-black text-white">KoreaSelector</div>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="./index.html#features" class="text-toss-gray-400 hover:text-white font-medium transition-colors">기능</a>
+                    <a href="./index.html#about" class="text-toss-gray-400 hover:text-white font-medium transition-colors">소개</a>
+                    <a href="./license.html" class="text-toss-gray-400 hover:text-white font-medium transition-colors">라이센스</a>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-400 hover:text-white font-medium transition-colors">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-toss-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-toss-gray-400 mb-4 md:mb-0">
+                        더 편한 대한민국 입력을 위해
+                    </p>
+                    <p class="text-toss-gray-400">© 2025 mirseo. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for interactions -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

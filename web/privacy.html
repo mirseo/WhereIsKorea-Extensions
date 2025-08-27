@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보 처리방침 - KoreaSelector</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../KoreaSEL/static/koreaselector.png">
+    <link rel="apple-touch-icon" href="../KoreaSEL/static/koreaselector.png">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Pretendard Font -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <!-- TailwindCSS Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'sans-serif']
+                    },
+                    colors: {
+                        'toss-blue': '#3182f6',
+                        'toss-gray': {
+                            50: '#f8f9fa',
+                            100: '#f1f3f4',
+                            200: '#e8eaed',
+                            300: '#dadce0',
+                            400: '#9aa0a6',
+                            500: '#5f6368',
+                            600: '#3c4043',
+                            700: '#202124',
+                            800: '#191c20',
+                            900: '#0f1014'
+                        }
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- HTMX -->
+    <script src="./htmx.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .toss-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .toss-shadow-lg {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-text {
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+        }
+        
+        .section-padding {
+            padding: 120px 0;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="./index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 toss-shadow">
+                        <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-lg font-bold text-toss-gray-700">KoreaSelector</div>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html#features" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">기능</a>
+                    <a href="./index.html#about" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">소개</a>
+                    <a href="./license.html" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">라이센스</a>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-500 hover:text-toss-gray-700 font-medium">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Privacy Policy Content -->
+    <section class="pt-32 pb-20 bg-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="hero-text text-4xl md:text-5xl font-black text-toss-gray-800 mb-6">
+                    개인정보 처리방침
+                </h1>
+                <p class="text-xl text-toss-gray-500 leading-relaxed max-w-3xl mx-auto">
+                    KoreaSelector는 사용자의 개인정보를 보호합니다.<br>
+                    이 페이지에서 개인정보 처리에 대해 자세히 알아보세요!
+                </p>
+            </div>
+
+            <!-- Privacy Summary -->
+            <div class="bg-green-50 border border-green-200 rounded-3xl p-8 mb-16">
+                <div class="text-center">
+                
+                    <h2 class="text-2xl font-bold text-green-800 mb-4">이 확장프로그램은 개인정보를 수집하지 않아요!</h2>
+                    <p class="text-green-700 text-lg leading-relaxed">
+                        KoreaSelector는 사용자의 개인정보를 전혀 수집, 저장, 전송하지 않는 100% 로컬 확장 프로그램입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Detailed Information -->
+            <div class="space-y-12">
+                <!-- 1. 개인정보 수집 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">1. 개인정보의 수집</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p><strong>KoreaSelector는 어떠한 개인정보도 수집하지 않습니다.</strong></p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>이름, 이메일, 전화번호 등 개인 식별 정보 수집 없음</li>
+                            <li>브라우저 사용 패턴이나 방문 기록 추적 없음</li>
+                            <li>사용자의 입력 데이터 저장 없음</li>
+                            <li>쿠키나 로컬 스토리지 사용 없음</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. 데이터 처리 방식 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">2. 데이터 처리 방식</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>확장 프로그램의 모든 작업은 사용자의 브라우저 내에서만 처리됩니다:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>웹 페이지의 국가 선택 필드 탐지</li>
+                            <li>대한민국 관련 옵션 식별 및 자동 선택</li>
+                            <li>모든 처리는 로컬에서 실행되며 외부 서버로 데이터 전송 없음</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. 권한 사용 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">3. 권한 사용</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>KoreaSelector가 요청하는 권한과 사용 목적:</p>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-toss-blue pl-4">
+                                <h3 class="font-semibold text-toss-gray-700">activeTab</h3>
+                                <p>현재 활성화된 탭에서 국가 선택 필드를 찾기 위해 사용</p>
+                            </div>
+                            <div class="border-l-4 border-toss-blue pl-4">
+                                <h3 class="font-semibold text-toss-gray-700">storage</h3>
+                                <p>사용자의 on/off 설정을 로컬에 저장하기 위해 사용</p>
+                            </div>
+                            <div class="border-l-4 border-toss-blue pl-4">
+                                <h3 class="font-semibold text-toss-gray-700">tabs</h3>
+                                <p>탭 정보 접근을 위해 사용 (개인정보 접근 없음)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 제3자 공유 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">4. 제3자와의 정보 공유</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p><strong>KoreaSelector는 어떠한 데이터도 제3자와 공유하지 않습니다.</strong></p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>광고 네트워크나 분석 도구 사용 없음</li>
+                            <li>외부 서버로의 데이터 전송 없음</li>
+                            <li>사용자 추적이나 프로파일링 없음</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. 데이터 보안 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">5. 데이터 보안</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>데이터를 수집하지 않기 때문에 보안 위험이 최소화됩니다:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>로컬에서만 동작하는 완전한 오프라인 처리</li>
+                            <li>오픈소스로 코드 투명성 보장</li>
+                            <li>정기적인 보안 업데이트 제공</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. 문의 및 연락처 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">6. 문의 및 연락처</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>개인정보 처리방침에 대한 문의사항이 있으시면:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>GitHub 저장소의 Issues 섹션을 통해 문의</li>
+                            <li>개발자: mirseo</li>
+                            <li>저장소: <a href="https://github.com/mirseo/WhereIsKorea-Extensions" class="text-toss-blue hover:underline" target="_blank">WhereIsKorea-Extensions</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. 정책 변경 -->
+                <div class="bg-white rounded-3xl toss-shadow-lg border border-toss-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-toss-gray-800 mb-6">7. 개인정보 처리방침 변경</h2>
+                    <div class="space-y-4 text-toss-gray-600 leading-relaxed">
+                        <p>이 개인정보 처리방침은 필요에 따라 업데이트될 수 있습니다:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>중요한 변경사항은 GitHub 저장소를 통해 공지</li>
+                            <li>사용자의 권리에 영향을 주는 변경은 사전 고지</li>
+                            <li>최신 버전은 항상 이 페이지에서 확인 가능</li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t border-toss-gray-200">
+                            <p class="text-sm text-toss-gray-500">
+                                <strong>최종 업데이트:</strong> 2025년 8월<br>
+                                <strong>버전:</strong> 1.0
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-toss-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="flex items-center space-x-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2">
+                        <img src="../KoreaSEL/static/koreaselector.png" alt="KoreaSelector Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-2xl font-black text-white">KoreaSelector</div>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="./index.html#features" class="text-toss-gray-400 hover:text-white font-medium transition-colors">기능</a>
+                    <a href="./index.html#about" class="text-toss-gray-400 hover:text-white font-medium transition-colors">소개</a>
+                    <a href="./license.html" class="text-toss-gray-400 hover:text-white font-medium transition-colors">라이센스</a>
+                    <a href="https://github.com/mirseo/WhereIsKorea-Extensions" target="_blank" class="text-toss-gray-400 hover:text-white font-medium transition-colors">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-toss-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-toss-gray-400 mb-4 md:mb-0">
+                        더 편한 대한민국 입력을 위해
+                    </p>
+                    <p class="text-toss-gray-400">© 2025 mirseo. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for interactions -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
