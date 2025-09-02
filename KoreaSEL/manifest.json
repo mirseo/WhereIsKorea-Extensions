@@ -5,8 +5,7 @@
   "description": "회원가입 창에서 대한민국을 자동으로 찾아주는 확장프로그램입니다!",
   "permissions": [
     "activeTab",
-    "storage",
-    "tabs"
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html",
