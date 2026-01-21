@@ -1,5 +1,8 @@
 # KoreaSelector - Chrome Extensions
 웹 사이트 회원가입, 주소 입력에서 한국을 찾는 것을 자동화해드립니다! :)  
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0c8c9cf1-0a46-4188-b1d0-18cb99c61230/deploy-status)](https://app.netlify.com/projects/sparkly-tartufo-ddc590/deploys)
+
 주의! ( 아직 개발 중이에요!! )  
 
 🇰🇷 더 이상 긴 국가 목록에서 "Korea"를 찾지 마세요!  
