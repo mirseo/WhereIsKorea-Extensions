@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 저장된 상태 불러오기 (Modern Promise-based API)
     const result = await chrome.storage.local.get(['koreaSelectorEnabled', 'theme']);
     const isEnabled = result.koreaSelectorEnabled !== false;
-    const savedTheme = result.theme || 'dark';
+    const savedTheme = result.theme || 'light';
 
     toggleSwitch.checked = isEnabled;
     updateStatusText(isEnabled);
