@@ -8,6 +8,28 @@
 <body>
     <div class="container">
         <div class="header">
+            <div class="theme-toggle-container">
+                <button class="theme-toggle-btn" id="themeToggleBtn">
+                    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="sun-icon" d="M12 4V2M12 22v-2M20 12h2M4 12H2M18.36 5.64l1.42-1.42M4.22 19.78l1.42-1.42M18.36 18.36l1.42 1.42M4.22 4.22l1.42 1.42M17 12a5 5 0 11-10 0 5 5 0 0110 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path class="moon-icon" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="theme-dropdown" id="themeDropdown">
+                    <div class="theme-option" data-theme="dark">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Dark</span>
+                    </div>
+                    <div class="theme-option" data-theme="light">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 4V2M12 22v-2M20 12h2M4 12H2M18.36 5.64l1.42-1.42M4.22 19.78l1.42-1.42M18.36 18.36l1.42 1.42M4.22 4.22l1.42 1.42M17 12a5 5 0 11-10 0 5 5 0 0110 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Light</span>
+                    </div>
+                </div>
+            </div>
             <div class="logo-container">
                 <div class="shield-icon"></div>
                 <div class="logo-text">
@@ -26,7 +48,7 @@
             <div class="status disabled" id="statusText">Disabled</div>
         </div>
         
-        <div class="copyright" id="copyrightLink">© 2025 mirseo. All rights reserved</div>
+        <div class="copyright" id="copyrightLink">© 2026 Artsnoa.com. All rights reserved</div>
     </div>
     <script src="popup.js"></script>
 </body>

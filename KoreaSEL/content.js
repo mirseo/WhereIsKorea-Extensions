@@ -29,19 +29,20 @@ let autoSelectEnabled = false;
 let processedElements = new WeakSet(); // DOM 요소를 직접 키로 사용
 let mutationObserver = null;
 
-// 초기화 및 설정 상태 확인
-chrome.storage.local.get(['koreaSelectorEnabled'], function(result) {
+// 초기화 및 설정 상태 확인 (Modern Promise-based API)
+(async () => {
+    const result = await chrome.storage.local.get(['koreaSelectorEnabled']);
     autoSelectEnabled = result.koreaSelectorEnabled !== false; // 기본값을 true로
     if (autoSelectEnabled) {
         initAutoSelector();
     }
-});
+})();
 
-// 메시지 리스너
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+// 메시지 리스너 (Modern async/await pattern)
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'toggleAutoSelect') {
         autoSelectEnabled = request.enabled;
-        
+
         if (autoSelectEnabled) {
             initAutoSelector();
             sendResponse({ success: true, message: '자동 선택이 활성화되었습니다' });
@@ -238,14 +239,13 @@ function processCustomDropdown(triggerElement) {
     }
 }
 
-function updateStats() {
-    chrome.storage.local.get(['koreaSelectorStats'], function(result) {
-        const stats = result.koreaSelectorStats || { totalSelections: 0 };
-        stats.totalSelections++;
-        stats.lastSelection = {
-            url: window.location.href,
-            timestamp: Date.now()
-        };
-        chrome.storage.local.set({ koreaSelectorStats: stats });
-    });
+async function updateStats() {
+    const result = await chrome.storage.local.get(['koreaSelectorStats']);
+    const stats = result.koreaSelectorStats || { totalSelections: 0 };
+    stats.totalSelections++;
+    stats.lastSelection = {
+        url: window.location.href,
+        timestamp: Date.now()
+    };
+    await chrome.storage.local.set({ koreaSelectorStats: stats });
 }
