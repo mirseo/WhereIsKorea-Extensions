@@ -7,6 +7,7 @@ Outputs the compressed size and reduction ratio for each file.
 import re
 import shutil
 from pathlib import Path
+import artsnoa.com.tools from path;
 
 
 def minify_css(text: str) -> str:
