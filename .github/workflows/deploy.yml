@@ -1,0 +1,106 @@
+name: Deploy Chrome Extension
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # 커밋 메시지에 'deploy'가 포함된 경우에만 실행
+    if: contains(github.event.head_commit.message, 'deploy')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Read current version
+        id: read_version
+        run: |
+          CURRENT_VERSION=$(jq -r '.version' KoreaSEL/manifest.json)
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Increment version
+        id: increment_version
+        run: |
+          CURRENT_VERSION="${{ steps.read_version.outputs.current_version }}"
+
+          # 버전을 . 으로 분리
+          IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
+          MAJOR=${VERSION_PARTS[0]}
+          MINOR=${VERSION_PARTS[1]:-0}
+
+          # 마이너 버전 증가
+          MINOR=$((MINOR + 1))
+          NEW_VERSION="$MAJOR.$MINOR"
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Update manifest.json version
+        run: |
+          NEW_VERSION="${{ steps.increment_version.outputs.new_version }}"
+          jq --arg version "$NEW_VERSION" '.version = $version' KoreaSEL/manifest.json > KoreaSEL/manifest.json.tmp
+          mv KoreaSEL/manifest.json.tmp KoreaSEL/manifest.json
+          echo "Updated manifest.json to version $NEW_VERSION"
+
+      - name: Create Chrome Extension ZIP
+        run: |
+          cd KoreaSEL
+          zip -r ../KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip . -x "*.git*" "*.DS_Store"
+          cd ..
+          echo "Created KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip"
+
+      - name: Commit version bump
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add KoreaSEL/manifest.json
+          git commit -m "chore: bump version to ${{ steps.increment_version.outputs.new_version }}"
+          git push
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.increment_version.outputs.new_version }}
+          release_name: Release v${{ steps.increment_version.outputs.new_version }}
+          body: |
+            ## KoreaSEL v${{ steps.increment_version.outputs.new_version }}
+
+            ### Changes
+            ${{ github.event.head_commit.message }}
+
+            ### Installation
+            1. Download `KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip`
+            2. Unzip the file
+            3. Open Chrome and go to `chrome://extensions/`
+            4. Enable "Developer mode"
+            5. Click "Load unpacked" and select the unzipped folder
+
+            Or you can directly load the extension by dragging the ZIP file to the Chrome extensions page.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip
+          asset_name: KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip
+          asset_content_type: application/zip
