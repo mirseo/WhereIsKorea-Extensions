@@ -7,6 +7,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     color: #ffffff;
     overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+    background: #ffffff;
+    color: #000000;
 }
 
 .container {
@@ -24,6 +30,123 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    position: relative;
+    width: 100%;
+}
+
+.theme-toggle-container {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    z-index: 100;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(0, 102, 255, 0.1);
+}
+
+body.light-theme .theme-toggle-btn:hover {
+    background: rgba(0, 102, 255, 0.1);
+}
+
+.theme-icon {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+body.light-theme .theme-icon {
+    color: #000000;
+}
+
+.sun-icon {
+    display: none;
+}
+
+body.light-theme .sun-icon {
+    display: block;
+}
+
+body.light-theme .moon-icon {
+    display: none;
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 120px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    border: 1px solid #333333;
+}
+
+body.light-theme .theme-dropdown {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.theme-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ffffff;
+}
+
+body.light-theme .theme-option {
+    color: #000000;
+}
+
+.theme-option:hover {
+    background: rgba(0, 102, 255, 0.1);
+}
+
+.theme-option.active {
+    background: linear-gradient(135deg, #0066FF 0%, #004DB3 100%);
+    color: #ffffff;
+}
+
+.theme-option svg {
+    width: 18px;
+    height: 18px;
+    color: currentColor;
+}
+
+.theme-option span {
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .logo-container {
@@ -66,6 +189,11 @@ body {
     color: #ffffff;
     letter-spacing: -0.6px;
     line-height: 1.1;
+    transition: color 0.3s ease;
+}
+
+body.light-theme .logo-text h1 {
+    color: #000000;
 }
 
 .logo-text h1:first-child {
@@ -78,12 +206,21 @@ body {
     margin-top: -2px;
 }
 
+body.light-theme .logo-text h1:last-child {
+    color: #666666;
+}
+
 h1 {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.8px;
+    transition: color 0.3s ease;
+}
+
+body.light-theme h1 {
+    color: #000000;
 }
 
 .toggle-section {
@@ -120,6 +257,11 @@ h1 {
     border: 2px solid #333333;
 }
 
+body.light-theme .slider {
+    background-color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+
 .slider:before {
     position: absolute;
     content: "";
@@ -131,6 +273,11 @@ h1 {
     border-radius: 50%;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.light-theme .slider:before {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 input:checked + .slider {
@@ -160,9 +307,23 @@ input:checked + .slider:before {
     color: #666666;
 }
 
+body.light-theme .status.disabled {
+    color: #999999;
+}
+
 .copyright {
     font-size: 11px;
     color: #666666;
     font-weight: 400;
     margin-top: auto;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+body.light-theme .copyright {
+    color: #999999;
+}
+
+.copyright:hover {
+    color: #0066FF;
 }
