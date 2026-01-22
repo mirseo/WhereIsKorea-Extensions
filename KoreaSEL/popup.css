@@ -37,7 +37,7 @@ body.light-theme {
 .theme-toggle-container {
     position: absolute;
     top: -20px;
-    right: 0;
+    right: -10px;
     z-index: 100;
 }
 
