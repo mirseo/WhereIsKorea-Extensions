@@ -12,6 +12,10 @@ jobs:
     # 커밋 메시지에 'deploy'가 포함된 경우에만 실행
     if: contains(github.event.head_commit.message, 'deploy')
 
+    # GITHUB_TOKEN에 쓰기 권한 부여
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -68,16 +72,13 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add KoreaSEL/manifest.json
           git commit -m "chore: bump version to ${{ steps.increment_version.outputs.new_version }}"
-          git push
+          git push origin main
 
       - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.increment_version.outputs.new_version }}
-          release_name: Release v${{ steps.increment_version.outputs.new_version }}
+          name: Release v${{ steps.increment_version.outputs.new_version }}
           body: |
             ## KoreaSEL v${{ steps.increment_version.outputs.new_version }}
 
@@ -92,15 +93,7 @@ jobs:
             5. Click "Load unpacked" and select the unzipped folder
 
             Or you can directly load the extension by dragging the ZIP file to the Chrome extensions page.
+          files: |
+            KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip
-          asset_name: KoreaSEL-v${{ steps.increment_version.outputs.new_version }}.zip
-          asset_content_type: application/zip
