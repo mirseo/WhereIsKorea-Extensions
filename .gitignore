@@ -1,0 +1,31 @@
+# Chrome Extension signing keys / certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.cfx
+*.pfx
+*.p12
+*.pkcs12
+*.p8
+*.jks
+*.keystore
+*.crx
+
+# Secrets / credentials
+.env
+.env.*
+*.secret
+client_secret*.json
+credentials.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Node
+node_modules/
+npm-debug.log*
