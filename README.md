@@ -24,7 +24,24 @@ KoreaSelector는 해외 웹사이트 회원가입이나 폼 작성 시
 
 
 ### 기여자!
-아직은 Issue로 기여하신 분이 없어요!  
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/mirseo">
+        <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/mirseo&w=100&h=100&fit=cover&mask=circle" width="100" alt="mirseo"/>
+        <br /><sub><b>mirseo</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/dongdongm123">
+        <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/dongdongm123&w=100&h=100&fit=cover&mask=circle" width="100" alt="dongdongm123"/>
+        <br /><sub><b>dongdongm123</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+Issue나 PR로 기여해주시면 이곳에 추가됩니다!  
 
 ### 현재 진행 상황  
 25.08.26 - 개발 완료  
@@ -32,3 +49,5 @@ KoreaSelector는 해외 웹사이트 회원가입이나 폼 작성 시
 25.08.30 - 구글 등록  
 26.01.22 - v1.3 업데이트 진행  
 26.05.28 - v1.5 도메인 교체 진행  
+26.05.28 - v1.5.1 오탐 문제 해결  
+
