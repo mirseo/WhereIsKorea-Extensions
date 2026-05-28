@@ -25,6 +25,49 @@ const KOREA_PATTERNS = [
   /\+82\b/
 ];
 
+// 북한 관련 키워드/패턴 — 'korea' 부분 일치로 인한 오탐 방지용
+// North Korea keywords/patterns — used to block false positives caused by 'korea' substring matches
+const NORTH_KOREA_KEYWORDS = new Set([
+    'north korea', 'north korean', 'n. korea', 'no. korea', 'n korea',
+    'dprk', "democratic people's republic of korea",
+    "korea, democratic people's republic of",
+    'korea (north)', 'korea, north', 'korea (n)',
+    '북한', '북조선', '조선민주주의인민공화국', '조선민주주의 인민공화국',
+    'corée du nord', 'nordkorea', 'corea del norte', 'coreia do norte',
+    'noord-korea', 'северная корея', 'كوريا الشمالية',
+    '北朝鮮', '朝鮮民主主義人民共和国', '朝鲜民主主义人民共和国'
+].map(k => k.toLowerCase()));
+
+const NORTH_KOREA_PATTERNS = [
+    /\bNorth\s*Korea(n)?\b/i,
+    /\bN\.?\s*Korea\b/i,
+    /\bDemocratic\s*People'?s\s*Republic\s*of\s*Korea\b/i,
+    /\bDPRK\b/i,
+    /\bKP\b/,
+    /\bPRK\b/,
+    /\b408\b/,
+    /\+850\b/,
+    /(북한|북조선|조선민주주의인민공화국)/
+];
+
+// South Korea를 명확히 지칭하는 키워드/패턴 — 모호한 'korea' 단독 매칭보다 우선
+// Explicit South Korea patterns — preferred over ambiguous bare 'korea' matches when scoring candidates
+const EXPLICIT_SOUTH_KOREA_PATTERNS = [
+    /\bSouth\s*Korea(n)?\b/i,
+    /\bS\.?\s*Korea\b/i,
+    /\bRepublic\s*of\s*Korea\b/i,
+    /\bKorea\s*Republic\b/i,
+    /\bKorea,\s*Republic\s*of\b/i,
+    /\bKorea\s*\(South\)\b/i,
+    /\bROK\b/,
+    /\bKR\b/,
+    /\bKOR\b/,
+    /\b410\b/,
+    /\+82\b/,
+    /(대한민국|남한|남조선)/,
+    /(corée du sud|südkorea|corea del sur|coreia do sul|южная корея|韓国|韩国|大韓民國|大韩民国)/i
+];
+
 let autoSelectEnabled = false;
 let processedElements = new WeakSet(); // DOM 요소를 직접 키로 사용
 let mutationObserver = null;
@@ -138,7 +181,33 @@ function isLikelyCountrySelector(element) {
     return false;
 }
 
+function isNorthKoreaMatch(text) {
+    if (!text) return false;
+    const normalizedText = text.toLowerCase().trim();
+    if (NORTH_KOREA_KEYWORDS.has(normalizedText)) return true;
+    for (const keyword of NORTH_KOREA_KEYWORDS) {
+        if (normalizedText.includes(keyword)) return true;
+    }
+    for (const pattern of NORTH_KOREA_PATTERNS) {
+        if (pattern.test(text)) return true;
+    }
+    return false;
+}
+
+function isExplicitSouthKoreaMatch(text) {
+    if (!text) return false;
+    for (const pattern of EXPLICIT_SOUTH_KOREA_PATTERNS) {
+        if (pattern.test(text)) return true;
+    }
+    return false;
+}
+
 function isKoreaMatch(text) {
+    if (!text) return false;
+    // 북한 표기는 'korea' 부분 일치로 잡히지 않도록 먼저 차단
+    // Block North Korea labels first so they aren't picked up by the 'korea' substring rule
+    if (isNorthKoreaMatch(text)) return false;
+
     const normalizedText = text.toLowerCase().trim();
     if (KOREA_KEYWORDS.has(normalizedText)) {
         return true;
@@ -154,6 +223,34 @@ function isKoreaMatch(text) {
     return false;
 }
 
+// 후보 옵션 중 최적의 South Korea 매칭을 선택.
+// 명시적 South Korea 매칭(예: "South Korea", "Republic of Korea", "KR")이
+// 모호한 'korea' 부분 일치보다 우선.
+// Pick the best South Korea candidate among the given options.
+// Explicit South Korea matches (e.g. "South Korea", "Republic of Korea", "KR")
+// outrank ambiguous bare 'korea' substring matches so that lists containing
+// both North and South Korea always resolve to the South Korea entry.
+function findBestKoreaOption(options, getText, getValue) {
+    let best = null;
+    let bestScore = 0;
+
+    for (const opt of options) {
+        const text = getText(opt) || '';
+        const value = getValue ? (getValue(opt) || '') : '';
+
+        if (isNorthKoreaMatch(text) || isNorthKoreaMatch(value)) continue;
+        if (!isKoreaMatch(text) && !isKoreaMatch(value)) continue;
+
+        const score = (isExplicitSouthKoreaMatch(text) || isExplicitSouthKoreaMatch(value)) ? 100 : 10;
+        if (score > bestScore) {
+            bestScore = score;
+            best = opt;
+        }
+    }
+
+    return best;
+}
+
 // --- 네이티브 <select> 처리 ---
 function processSelect(selectElement) {
     if (!autoSelectEnabled || processedElements.has(selectElement)) return;
@@ -162,8 +259,10 @@ function processSelect(selectElement) {
         console.groupCollapsed(`[KoreaSEL] Processing <select>: ${selectElement.id || selectElement.name || 'No ID/Name'}`);
         processedElements.add(selectElement);
         
-        const koreaOption = Array.from(selectElement.options).find(option => 
-            isKoreaMatch(option.textContent) || isKoreaMatch(option.value)
+        const koreaOption = findBestKoreaOption(
+            Array.from(selectElement.options),
+            opt => opt.textContent,
+            opt => opt.value
         );
 
         if (koreaOption && !koreaOption.selected) {
@@ -217,7 +316,10 @@ function processCustomDropdown(triggerElement) {
 
             listboxes.forEach(box => {
                 const options = box.querySelectorAll('[role="option"], li, a, div');
-                const koreaOptionElement = Array.from(options).find(opt => isKoreaMatch(opt.textContent));
+                const koreaOptionElement = findBestKoreaOption(
+                    Array.from(options),
+                    el => el.textContent
+                );
 
                 if (koreaOptionElement) {
                     console.log('Found Korea option in custom dropdown:', koreaOptionElement.textContent);
