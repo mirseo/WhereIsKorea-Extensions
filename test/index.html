@@ -16,6 +16,7 @@
 
     <h1>회원가입 자동 선택 기능 테스트</h1>
     <p>이 페이지는 '대한민국'을 다양한 방식으로 표기한 드롭다운 메뉴를 포함하고 있습니다. 익스텐션이 각기 다른 형식을 인식하고 자동으로 '대한민국'을 선택하는지 확인해보세요.</p>
+    <p><strong>오탐 테스트:</strong> 아래 6번 이후의 섹션은 북한(DPRK)이나 'Korea'를 포함하는 비(非)한국 항목들로 구성되어 있습니다. 익스텐션이 이 항목들을 잘못 선택하면 오탐입니다. 정답은 각 섹션의 <em>(정답: ...)</em> 표기를 참고하세요.</p>
 
     <div class="form-section">
         <h2>1. 영문 표준 표기</h2>
@@ -75,6 +76,178 @@
             <option value="156">China</option>
         </select>
     </div>
-    
+
+    <hr>
+    <h2 style="color:#c0392b;">오탐(False Positive) 테스트 섹션</h2>
+
+    <div class="form-section">
+        <h2>6. 남북한 동시 표기 (영문) <em>(정답: South Korea)</em></h2>
+        <label for="country6">Country</label>
+        <select id="country6" name="country6">
+            <option value="">-- Select a country --</option>
+            <option value="KP">North Korea</option>
+            <option value="KR">South Korea</option>
+            <option value="JP">Japan</option>
+            <option value="CN">China</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>7. 북한이 먼저 나오는 경우 <em>(정답: Republic of Korea)</em></h2>
+        <label for="country7">Country</label>
+        <select id="country7" name="country7">
+            <option value="">-- Select --</option>
+            <option value="KP">Democratic People's Republic of Korea</option>
+            <option value="KR">Republic of Korea</option>
+            <option value="MN">Mongolia</option>
+            <option value="VN">Vietnam</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>8. 한국만 없는 경우 <em>(정답: 선택하지 않아야 함)</em></h2>
+        <label for="country8">Country</label>
+        <select id="country8" name="country8">
+            <option value="">-- Select a country --</option>
+            <option value="KP">North Korea</option>
+            <option value="KP">Korea, Democratic People's Republic of</option>
+            <option value="KP">Korea (North)</option>
+            <option value="KP">DPRK</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>9. 북한 한글 표기 <em>(정답: 대한민국)</em></h2>
+        <label for="country9">국가</label>
+        <select id="country9" name="country9">
+            <option value="">-- 국가 선택 --</option>
+            <option value="KP">북한</option>
+            <option value="KP">조선민주주의인민공화국</option>
+            <option value="KP">북조선</option>
+            <option value="KR">대한민국</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>10. 다국어 북한 표기 <em>(정답: 선택하지 않아야 함)</em></h2>
+        <label for="country10">Select Your Country</label>
+        <select id="country10" name="country10">
+            <option value="">-- Choose --</option>
+            <option value="KP">Corée du Nord</option>
+            <option value="KP">Nordkorea</option>
+            <option value="KP">Corea del Norte</option>
+            <option value="KP">朝鮮民主主義人民共和国</option>
+            <option value="KP">Северная Корея</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>11. ISO 코드 - 북한 포함 <em>(정답: 410)</em></h2>
+        <label for="country11">Country ID</label>
+        <select id="country11" name="country11">
+            <option value="">-- Select --</option>
+            <option value="408">North Korea (408)</option>
+            <option value="410">South Korea (410)</option>
+            <option value="392">Japan (392)</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>12. 국가 코드 약칭 (KP vs KR) <em>(정답: KR)</em></h2>
+        <label for="country12">Country Code</label>
+        <select id="country12" name="country12">
+            <option value="">-- Select --</option>
+            <option value="KP">KP</option>
+            <option value="PRK">PRK</option>
+            <option value="KR">KR</option>
+            <option value="KOR">KOR</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>13. 국제 전화 코드 <em>(정답: +82)</em></h2>
+        <label for="country13">Dial Code</label>
+        <select id="country13" name="country13">
+            <option value="">-- Select --</option>
+            <option value="+850">+850 (North Korea)</option>
+            <option value="+82">+82 (South Korea)</option>
+            <option value="+81">+81 (Japan)</option>
+            <option value="+86">+86 (China)</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>14. 'Korea'를 포함하는 함정 단어 <em>(정답: 선택하지 않아야 함 — 국가 필드가 아니므로)</em></h2>
+        <label for="company14">제휴사 / Partner</label>
+        <select id="company14" name="company14">
+            <option value="">-- Select Partner --</option>
+            <option value="ke">Korean Air</option>
+            <option value="kt">Koreatown Plaza</option>
+            <option value="kb">Korea Bay Resort</option>
+            <option value="kh">Korea Herald</option>
+            <option value="kf">Korea Foundation</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>15. 국가 필드 + Korea 함정 항목 <em>(정답: South Korea)</em></h2>
+        <label for="country15">Country</label>
+        <select id="country15" name="country15">
+            <option value="">-- Select --</option>
+            <option value="ke">Korean Air HQ</option>
+            <option value="kt">Koreatown</option>
+            <option value="KP">North Korea</option>
+            <option value="KR">South Korea</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>16. 한국 부분 문자열 함정 (South Korea가 없음) <em>(정답: 선택하지 않아야 함)</em></h2>
+        <label for="country16">Country</label>
+        <select id="country16" name="country16">
+            <option value="">-- Select --</option>
+            <option value="KP">North Korea</option>
+            <option value="JP">Japan</option>
+            <option value="CN">China</option>
+            <option value="MN">Mongolia</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>17. 알파벳 순으로 정렬된 긴 국가 리스트 <em>(정답: South Korea)</em></h2>
+        <label for="country17">Country</label>
+        <select id="country17" name="country17">
+            <option value="">-- Select --</option>
+            <option value="AR">Argentina</option>
+            <option value="BR">Brazil</option>
+            <option value="CA">Canada</option>
+            <option value="CN">China</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="IN">India</option>
+            <option value="JP">Japan</option>
+            <option value="MX">Mexico</option>
+            <option value="KP">North Korea</option>
+            <option value="RU">Russia</option>
+            <option value="KR">South Korea</option>
+            <option value="ES">Spain</option>
+            <option value="GB">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="VN">Vietnam</option>
+        </select>
+    </div>
+
+    <div class="form-section">
+        <h2>18. 비(非)국가 드롭다운 - 무관 필드 <em>(정답: 선택하지 않아야 함 — country 키워드 없음)</em></h2>
+        <label for="lang18">언어 선택 / Language</label>
+        <select id="lang18" name="language">
+            <option value="">-- Choose --</option>
+            <option value="ko">Korean</option>
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="zh">Chinese</option>
+        </select>
+    </div>
+
 </body>
 </html>
